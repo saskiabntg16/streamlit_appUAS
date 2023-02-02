@@ -22,11 +22,11 @@ def main():
     st.markdown('Silakan isi form berikut terlebih dahulu :')
     
     st.write('\n')
-    age = st.number_input("age", 0)
-    sex = st.number_input("sex", 0)
-    bmi = st.number_input("bmi", 0)
-    children = st.number_input("children", 0)
-    smoker = st.number_input("smoker", 0)
+    age = st.number_input("Age", 0)
+    sex = st.number_input("Sex (Male = 0, Female = 1)", 0)
+    bmi = st.number_input("BMI", 0)
+    children = st.number_input("Children", 0)
+    smoker = st.number_input("Smoker (Yes = 1, No = 0)", 0)
     result =""
     
     if st.button("PREDIKSI"):
