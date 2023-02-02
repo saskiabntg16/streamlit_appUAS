@@ -15,8 +15,8 @@ def prediction(age, sex, bmi, children, smoker):
 app_mode = st.sidebar.selectbox('Select Page',['Home','Prediction']) #two pages
 
 if app_mode=='Home':
-    st.write('Nim : 2019230039')
-    st.write('Nama : Esa Meytha Shamirah')
+    st.write('Nama : Saskia Bintang Maharani')
+    st.write('NIM : 2019230047')
     st.write('\n')
     st.title('Pembayaran Premi Asuransi :') 
     st.write('\n')
