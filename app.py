@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import streamlit as st
 import pandas as pd
 import pickle
@@ -37,10 +31,6 @@ features = pd.DataFrame(data, index=[0])
 
 st.subheader('Parameter Inputan')
 st.write(features)
-
-
-# In[ ]:
-
 
 
 
