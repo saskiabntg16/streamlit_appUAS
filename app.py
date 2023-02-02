@@ -5,32 +5,54 @@ from PIL import Image
 from sklearn import datasets
 from sklearn.svm import SVC
 
+# load the model from disk
 model = pickle.load(open('model_uas.pkl', 'rb'))
 
+import streamlit as st
+
+# Creating the Titles and Image
+
 st.header("SMART INSURANCE")
+st.title("Predict insurance charges")
 st.write("NAMA : SASKIA BINTANG MAHARANI")
 st.write("NIM : 2019230047")
 
-img = Image.open ('insurance.jpg')
-st.image(img, use_column_width=False)
-st.write("Please Insert Values, to Insurance prediction:")
+import pandas as pd
+def load_data():
+    df = pd.DataFrame({'sex': ['Male','Female'],
+                       'smoker': ['Yes', 'No']}) 
+    return df
+df = load_data()
 
-st.sidebar.header('Parameter Value Prediction')
+# Take the users input
 
-age = st.sidebar.slider('age:', 0, 100)
-sex = st.sidebar.slider('sex:', 0, 1)
-bmi = st.sidebar.slider('bmi',20, 60)
-children = st.sidebar.slider('children:', 0, 20)
-smoker = st.sidebar.slider('smoker:', 0, 1)
-data = {'age': age,
-        'sex': sex,
-        'bmi': bmi,
-        'children': children}
+sex = st.selectbox("Select Sex", df['sex'].unique())
+smoker = st.selectbox("Are you a smoker", df['smoker'].unique())
+age = st.slider("What is your age?", 18, 100)
+bmi = st.slider("What is your bmi?", 10, 60)
+children = st.slider("Number of children", 0, 10)
 
-features = pd.DataFrame(data, index=[0])
+# converting text input to numeric to get back predictions from backend model.
+if sex == 'male':
+    gender = 1
+else:
+    gender = 0
+    
+if smoker == 'yes':
+    smoke = 1
+else:
+    smoke = 0
+    
+# store the inputs
+features = [gender, smoke, age, bmi, children]
+# convert user inputs into an array fr the model
 
-st.subheader('Parameter Inputan')
-st.write(features)
+int_features = [int(x) for x in features]
+final_features = [np.array(int_features)]
 
+if st.button('Predict'):           # when the submit button is pressed
+    prediction =  loaded_model.predict(final_features)
+    st.balloons()
+    st.success(f'Your medical charges would be: ${round(prediction[0],2)}')
 
 
