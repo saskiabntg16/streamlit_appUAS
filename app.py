@@ -1,60 +1,47 @@
 import streamlit as st
 import pandas as pd
-import pickle
-from PIL import Image
-from sklearn import datasets
-from sklearn.svm import SVC
+import numpy as np
+import pickle #to load a saved model
 
-# load the model from disk
-model = pickle.load(open('model_uas.pkl', 'rb'))
+pickle_in = open('model_uas.pkl', 'rb')
+nb = pickle.load(pickle_in)
 
-import streamlit as st
+def prediction(age, sex, bmi, children, smoker):
 
-# Creating the Titles and Image
+    prediction = nb.predict([[age, sex, bmi, children, smoker]])
+    print(prediction)
+    return prediction
 
-st.write("SMART INSURANCE")
-st.write("Predict Insurance Charges")
+app_mode = st.sidebar.selectbox('Select Page',['Home','Prediction']) #two pages
 
-st.write("NAMA : SASKIA BINTANG MAHARANI")
-st.write("NIM : 2019230047")
+if app_mode=='Home':
+    st.write('Nim : 2019230039')
+    st.write('Nama : Esa Meytha Shamirah')
+    st.write('\n')
+    st.title('Pembayaran Premi Asuransi :') 
+    st.write('\n')
+    st.write('\n')
+    st.image('premi.jpg')
+    st.title("Aplikasi Prediksi Pembayaran Premi Asuransis Dengan Algoritma Regresi Linier")
+    st.markdown('Dataset :')
+    data=pd.read_csv('insurance1.csv')
+    st.write(data.head())
 
-
-
-import pandas as pd
-def load_data():
-    df = pd.DataFrame({'sex': ['Male','Female'],
-                       'smoker': ['Yes', 'No']}) 
-    return df
-df = load_data()
-
-# Take the users input
-
-sex = st.selectbox("Select Sex", df['sex'].unique())
-smoker = st.selectbox("Are you a smoker", df['smoker'].unique())
-age = st.slider("What is your age?", 18, 100)
-bmi = st.slider("What is your bmi?", 10, 60)
-children = st.slider("Number of children", 0, 10)
-
-if sex == 'male':
-    gender = 1
-else:
-    gender = 0
+elif app_mode == 'Prediction':
+    st.write('\n')
+    st.write('Nama : Saskia Bintang Maharani')
+    st.write('Nim : 2019230047')
+    st.write('\n')
+    st.title('Silakan, isi form berikut ini :')
     
-if smoker == 'yes':
-    smoke = 1
-else:
-    smoke = 0
+    st.write('\n')
+    age = st.number_input("Age", 0)
+    sex = st.number_input("Sex (Male = 0, Female = 1)", 0)
+    bmi = st.number_input("BMI", 0)
+    children = st.number_input("Children", 0)
+    smoker = st.number_input("Smoker (Yes = 1, No = 0)", 0)
+    result =""
     
-# store the inputs
-features = [gender, smoke, age, bmi, children]
-# convert user inputs into an array fr the model
-
-int_features = [int(x) for x in features]
-final_features = [np.array(int_features)]
-
-if st.button('Predict'):           
-    prediction =  loaded_model.predict(final_features)
-    st.balloons()
-    st.success(f'Your medical charges would be: ${round(prediction[0],2)}')
-
-
+    if st.button("SUBMIT"):
+        result = prediction(age, sex, bmi, children, smoker)
+    st.success('Hasil Prediksi Dengan Algoritma Regresi Linier = {}'.format(result))
