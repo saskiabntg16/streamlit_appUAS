@@ -37,25 +37,16 @@ elif app_mode == 'Prediction':
     st.title('Isi Data Dibawah Ini :')
     
     st.write('\n')
-        sex = st.selectbox("Select Sex", df['sex'].unique())
-        smoker = st.selectbox("Are you a smoker", df['smoker'].unique())
-        age = st.slider("What is your age?", 18, 100)
-        bmi = st.slider("What is your bmi?", 10, 60)
-        children = st.slider("Number of children", 0, 10)
-        
-            if sex == 'male':
-                gender = 1
-            else:
-                gender = 0
-
-            if smoker == 'yes':
-                smoke = 1
-            else:
-                smoke = 0
+            age = st.number_input("Age", 0)
+    sex = st.number_input("Sex (Male = 0, Female = 1)", 0)
+    bmi = st.number_input("BMI", 0)
+    children = st.number_input("Children", 0)
+    smoker = st.number_input("Smoker (Yes = 1, No = 0)", 0)
     result =""
     
 
     
     if st.button("Pedict"):
-        result = prediction(sex, smoker, age, bmi, children)
+        result = prediction(age, sex, bmi, children, smoker)
+
     st.success('Hasil Prediksi Dengan Algoritma Regresi Linier = {}'.format(result))
