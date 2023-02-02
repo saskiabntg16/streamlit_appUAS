@@ -45,5 +45,6 @@ elif app_mode == 'Prediction':
     if st.button("SUBMIT"):
         result = prediction(age, sex, bmi, children, smoker)
     st.success('Hasil Prediksi Dengan Algoritma Regresi Linier = {}'.format(result))
-
-    st.success('Hasil Prediksi Dengan Algoritma Regresi Linier = {}'.format(result))
+    
+if __name__=='__main__':
+    main()
