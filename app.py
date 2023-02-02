@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from PIL import image
+from PIL import Image
 import pickle #to load a saved model
 
 pickle_in = open('model_uas.pkl', 'rb')
@@ -37,13 +37,23 @@ elif app_mode == 'Prediction':
     st.title('Isi Data Dibawah Ini :')
     
     st.write('\n')
-    age = st.selectbox("Age", 0)
-    sex = st.selectbox("Sex (Male = 0, Female = 1)", 0)
-    bmi = st.slider("BMI", 0)
-    children = st.slider("Children", 0)
-    smoker = st.selectbox("Smoker (Yes = 1, No = 0)", 0)
+        sex = st.selectbox("Select Sex", df['sex'].unique())
+        smoker = st.selectbox("Are you a smoker", df['smoker'].unique())
+        age = st.slider("What is your age?", 18, 100)
+        bmi = st.slider("What is your bmi?", 10, 60)
+        children = st.slider("Number of children", 0, 10)
     result =""
     
-    if st.button("SUBMIT"):
-        result = prediction(age, sex, bmi, children, smoker)
+    if sex == 'male':
+    gender = 1
+else:
+    gender = 0
+    
+if smoker == 'yes':
+    smoke = 1
+else:
+    smoke = 0
+    
+    if st.button("Pedict"):
+        result = prediction(sex, smoker, age, bmi, children)
     st.success('Hasil Prediksi Dengan Algoritma Regresi Linier = {}'.format(result))
