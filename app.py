@@ -12,10 +12,13 @@ import streamlit as st
 
 # Creating the Titles and Image
 
-st.header("SMART INSURANCE")
-st.header("Predict Insurance Charges")
+st.write("SMART INSURANCE")
+st.write("Predict Insurance Charges")
+
 st.write("NAMA : SASKIA BINTANG MAHARANI")
 st.write("NIM : 2019230047")
+
+
 
 import pandas as pd
 def load_data():
@@ -32,7 +35,6 @@ age = st.slider("What is your age?", 18, 100)
 bmi = st.slider("What is your bmi?", 10, 60)
 children = st.slider("Number of children", 0, 10)
 
-# converting text input to numeric to get back predictions from backend model.
 if sex == 'male':
     gender = 1
 else:
@@ -50,7 +52,7 @@ features = [gender, smoke, age, bmi, children]
 int_features = [int(x) for x in features]
 final_features = [np.array(int_features)]
 
-if st.button('Predict'):           # when the submit button is pressed
+if st.button('Predict'):           
     prediction =  loaded_model.predict(final_features)
     st.balloons()
     st.success(f'Your medical charges would be: ${round(prediction[0],2)}')
