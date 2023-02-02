@@ -21,7 +21,7 @@ if app_mode=='Home':
     st.title('Pembayaran Premi Asuransi :') 
     st.write('\n')
     st.write('\n')
-    st.image('premi.jpg')
+    st.image('insurance.jpg')
     st.title("Aplikasi Prediksi Pembayaran Premi Asuransis Dengan Algoritma Regresi Linier")
     st.markdown('Dataset :')
     data=pd.read_csv('insurance1.csv')
@@ -32,14 +32,14 @@ elif app_mode == 'Prediction':
     st.write('Nama : Saskia Bintang Maharani')
     st.write('Nim : 2019230047')
     st.write('\n')
-    st.title('Silakan, isi form berikut ini :')
+    st.title('Isi Data Dibawah Ini :')
     
     st.write('\n')
-    age = st.number_input("Age", 0)
-    sex = st.number_input("Sex (Male = 0, Female = 1)", 0)
-    bmi = st.number_input("BMI", 0)
-    children = st.number_input("Children", 0)
-    smoker = st.number_input("Smoker (Yes = 1, No = 0)", 0)
+    age = st.selectbox("Age", 0)
+    sex = st.selectbox("Sex (Male = 0, Female = 1)", 0)
+    bmi = st.slider("BMI", 0)
+    children = st.slider("Children", 0)
+    smoker = st.selectbox("Smoker (Yes = 1, No = 0)", 0)
     result =""
     
     if st.button("SUBMIT"):
