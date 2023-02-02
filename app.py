@@ -13,7 +13,7 @@ import streamlit as st
 # Creating the Titles and Image
 
 st.header("SMART INSURANCE")
-st.title("Predict insurance charges")
+st.header("Predict Insurance Charges")
 st.write("NAMA : SASKIA BINTANG MAHARANI")
 st.write("NIM : 2019230047")
 
