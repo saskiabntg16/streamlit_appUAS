@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import streamlit as st
+from PIL import Image
 
 pickle_in = open('model_uas.pkl', 'rb')
 nb = pickle.load(pickle_in)
@@ -19,6 +20,8 @@ def main():
     st.title("Aplikasi Prediksi Asuransi dengan Algoritma Linier Regression")
     st.markdown('Nama : Saskia Bintang Maharani | NIM : 2019230047')
     st.write('\n')
+    img = Image.open ('insurance.jpg')
+    st.image(img, use_column_width=False)
     st.markdown('Lengkapi Data Dibawah Ini Untuk Memprediksi:')
     
     st.write('\n')
