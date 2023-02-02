@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from PIL import image
 import pickle #to load a saved model
 
 pickle_in = open('model_uas.pkl', 'rb')
@@ -21,7 +22,8 @@ if app_mode=='Home':
     st.title('Pembayaran Premi Asuransi :') 
     st.write('\n')
     st.write('\n')
-    st.image('insurance.jpg')
+    img = Image.open ('insurance.jpg')
+    st.image(img, use_column_width=False)
     st.title("Aplikasi Prediksi Pembayaran Premi Asuransis Dengan Algoritma Regresi Linier")
     st.markdown('Dataset :')
     data=pd.read_csv('insurance1.csv')
