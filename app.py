@@ -17,7 +17,7 @@ st.write("Please Insert Values, to Insurance prediction:")
 
 st.sidebar.header('Parameter Value Prediction')
 
-age = st.sidebar.slider('age:', 17, 60)
+age = st.sidebar.slider('age:', 0, 100)
 sex = st.sidebar.slider('sex:', 0, 1)
 bmi = st.sidebar.slider('bmi',20, 60)
 children = st.sidebar.slider('children:', 0, 20)
