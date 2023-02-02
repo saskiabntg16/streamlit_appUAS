@@ -42,17 +42,19 @@ elif app_mode == 'Prediction':
         age = st.slider("What is your age?", 18, 100)
         bmi = st.slider("What is your bmi?", 10, 60)
         children = st.slider("Number of children", 0, 10)
+        
+            if sex == 'male':
+                gender = 1
+            else:
+                gender = 0
+
+            if smoker == 'yes':
+                smoke = 1
+            else:
+                smoke = 0
     result =""
     
-    if sex == 'male':
-    gender = 1
-else:
-    gender = 0
-    
-if smoker == 'yes':
-    smoke = 1
-else:
-    smoke = 0
+
     
     if st.button("Pedict"):
         result = prediction(sex, smoker, age, bmi, children)
