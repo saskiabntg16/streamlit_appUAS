@@ -17,7 +17,7 @@ def prediction(age, sex, bmi, children, smoker):
 
 def main():
     st.title("Aplikasi Prediksi Asuransi dengan Algoritma Linier Regression")
-    st.markdown('Oleh : Putri Dita Pratiwi (2019230001) | UAS Datamining')
+    st.markdown('Oleh : Saskia Bintang Maharani | 2019230047')
     st.write('\n')
     st.markdown('Silakan isi form berikut terlebih dahulu :')
     
@@ -29,9 +29,9 @@ def main():
     smoker = st.number_input("Smoker (Yes = 1, No = 0)", 0)
     result =""
     
-    if st.button("PREDIKSI"):
+    if st.button("Predict"):
         result = prediction(age, sex, bmi, children, smoker)
-    st.success('Charges {}'.format(result))
+    st.success('Hasil Prediksi Dengan Algoritma Regresi Linier {}'.format(result))
     
 if __name__=='__main__':
     main()
