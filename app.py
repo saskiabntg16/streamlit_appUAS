@@ -20,7 +20,7 @@ def main():
     st.title("Aplikasi Prediksi Asuransi dengan Algoritma Linier Regression")
     st.markdown('Nama : Saskia Bintang Maharani | NIM : 2019230047')
     st.write('\n')
-    img = Image.open ('insurance.jpg')
+    img = Image.open ('images.png')
     st.image(img, use_column_width=False)
     st.markdown('Lengkapi Data Dibawah Ini Untuk Memprediksi:')
     
